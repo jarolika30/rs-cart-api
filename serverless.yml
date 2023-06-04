@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   stage: dev
-  region: eu-central-1
+  region: us-east-1
 
 functions:
   main:
@@ -16,8 +16,8 @@ functions:
           method: ANY
           path: /
     environment:
-      DB_HOST: rds-cloudx-tarik.czk7ppdubmsk.eu-central-1.rds.amazonaws.com
+      DB_HOST: rds-cloudx-staurova.czk7ppdubmsk.us-east-1.rds.amazonaws.com
       POSTGRES_PORT: 5432
-      POSTGRES_USER: tarikceylan
-      POSTGRES_PASSWORD: tarik1234
+      POSTGRES_USER: jarolika30
+      POSTGRES_PASSWORD: password1234
       POSTGRES_DB: rds_cloudx_db
