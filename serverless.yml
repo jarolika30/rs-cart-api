@@ -17,8 +17,8 @@ functions:
           method: ANY
           path: /
     environment:
-      DB_HOST: rds-cloudx-staurova.czk7ppdubmsk.us-east-1.rds.amazonaws.com
+      DB_HOST: rds-cloudx-staurova.cczta6t2jkxh.us-east-1.rds.amazonaws.com
       POSTGRES_PORT: 5432
       POSTGRES_USER: jarolika30
       POSTGRES_PASSWORD: password1234
-      POSTGRES_DB: rds_cloudx_db
+      POSTGRES_DB: rds_cloudx_st_db

@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS cart_items (
 );
 
   INSERT INTO cart_items (cart_id, count) VALUES 
-  ('27c1866b-3eae-4047-8f67-f95b602a79f6', 2),
-  ('ca109c21-7645-421a-8dae-a0a851646fc3', 1),
-  ('3f7ab203-aca5-4321-bb1f-5fd58f07f23f', 3);
+  ('c2231735-96b1-49a2-a1be-5385ff646970', 2),
+  ('dc21ffb7-0a67-40f1-833b-a9745b15bd68', 1),
+  ('c661ffc3-77e5-4931-9747-64c4d0d6a913', 3);
