@@ -2,6 +2,8 @@ service: cart-service
 plugins:
   - serverless-offline
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -16,6 +18,10 @@ functions:
       - http:
           method: ANY
           path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+          cors: true
     environment:
       DB_HOST: rds-cloudx-staurova.cczta6t2jkxh.us-east-1.rds.amazonaws.com
       POSTGRES_PORT: 5432

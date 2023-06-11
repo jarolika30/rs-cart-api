@@ -1,4 +1,5 @@
 import { Controller, Get, Delete, Put, Body, Req, Post, UseGuards, HttpStatus } from '@nestjs/common';
+import { query_db } from '../db/postgres.client';
 
 // import { BasicAuthGuard, JwtAuthGuard } from '../auth';
 import { OrderService } from '../order';
@@ -17,14 +18,38 @@ export class CartController {
   // @UseGuards(JwtAuthGuard)
   // @UseGuards(BasicAuthGuard)
   @Get()
-  findUserCart(@Req() req: AppRequest) {
-    const cart = this.cartService.findOrCreateByUserId(getUserIdFromRequest(req));
+  async findUserCart(@Req() req: AppRequest) {
+    const userId = req.query.userId;
+
+    if (userId) {
+      const user = await query_db(
+        `SELECT * FROM carts JOIN cart_items ON (carts.id = cart_items.cart_id) WHERE carts.user_id = '${userId}'`,
+      );
+
+      if (user.rows[0]) {
+        return {
+          statusCode: HttpStatus.OK,
+          message: 'OK',
+          data: { user: user.rows },
+        };
+      } else {
+        return {
+          statusCode: HttpStatus.NO_CONTENT,
+          message: 'NO_CONTENT',
+          data: { message: `User with the id [ ${userId} ] was not found` },
+        };
+      }
+    }
+
+    const allUsers = await query_db(
+      `SELECT * FROM carts JOIN cart_items ON (carts.id = cart_items.cart_id)`,
+    );
 
     return {
       statusCode: HttpStatus.OK,
       message: 'OK',
-      data: { cart, total: calculateCartTotal(cart) },
-    }
+      data: { allUsers: allUsers.rows },
+    };
   }
 
   // @UseGuards(JwtAuthGuard)
