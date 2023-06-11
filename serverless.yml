@@ -1,0 +1,30 @@
+service: cart-service
+plugins:
+  - serverless-offline
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  profile: 'sandx'
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+          cors: true
+    environment:
+      DB_HOST: rds-cloudx-staurova.cczta6t2jkxh.us-east-1.rds.amazonaws.com
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: jarolika30
+      POSTGRES_PASSWORD: password1234
+      POSTGRES_DB: rds_cloudx_st_db
